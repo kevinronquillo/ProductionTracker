@@ -1,0 +1,7 @@
+myenv
+/production-app/__pycache__
+/production-app/classes/__pycache__
+/production-app/models/__pycache__
+/production-app/routes/__pycache__
+/production-app/schemas/__pycache__
+/production-app/server/__pycache__
