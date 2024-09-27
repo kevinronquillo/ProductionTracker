@@ -1,4 +1,5 @@
 myenv
+venv
 /production-app/__pycache__
 /production-app/classes/__pycache__
 /production-app/models/__pycache__
