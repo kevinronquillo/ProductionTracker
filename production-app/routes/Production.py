@@ -30,7 +30,7 @@ async def get_productions():
 async def get_production_data(id: str):
     production = await Production.get(id)
     if production:
-        return ResponseModel(production.dict(), "Production data retrieved successfully")
+        return ResponseModel(data = production.dict(), message = "Production data retrieved successfully")
     raise HTTPException(status_code=404, detail=f"Production with ID {id} not found.")
 
 # Update (PUT) - Update production data
@@ -40,7 +40,7 @@ async def update_production_data(id: str, req: UpdateProductionSchema = Body(...
     production = await Production.get(id)
     if production:
         await production.set(req)
-        return ResponseModel(f"Production with ID: {id} updated successfully", "Production updated successfully")
+        return ResponseModel(data = f"Production with ID: {id} updated successfully", message="Production updated successfully")
     raise HTTPException(status_code=404, detail=f"Production with ID {id} not found.")
 
 # Delete (DELETE) - Delete a production by ID
@@ -49,5 +49,5 @@ async def delete_production_data(id: str):
     production = await Production.get(id)
     if production:
         await production.delete()
-        return ResponseModel(f"Production with ID: {id} removed", "Production deleted successfully")
+        return ResponseModel(data = f"Production with ID: {id} removed", message = "Production deleted successfully")
     raise HTTPException(status_code=404, detail=f"Production with ID {id} not found.")

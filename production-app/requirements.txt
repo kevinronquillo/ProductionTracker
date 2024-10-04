@@ -1,5 +1,6 @@
 annotated-types==0.7.0
 anyio==4.6.0
+bcrypt==4.2.0
 beanie==1.26.0
 black==24.8.0
 cffi==1.17.1
@@ -14,6 +15,7 @@ lazy-model==0.2.0
 motor==3.6.0
 mypy-extensions==1.0.0
 packaging==24.1
+passlib==1.7.4
 pathspec==0.12.1
 platformdirs==4.3.6
 pycparser==2.22

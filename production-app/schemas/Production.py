@@ -9,7 +9,6 @@ class ProductionSchema(BaseModel):
     quantity: int
     hours: int
     production_list: str
-    department_list: str
     comment: Optional[str] = None
 
 # Schema for updating a production entry (fields optional)

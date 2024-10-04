@@ -1,7 +1,8 @@
 # main.py
 from fastapi import FastAPI
 from server.database import init_db
-from routes.production import router as ProductionRouter
+from routes.Production import router as ProductionRouter
+from routes.ProductionCategory import router as ProductionCategoryRouter
 
 app = FastAPI()
 
@@ -11,7 +12,10 @@ async def on_startup():
     await init_db()
 
 # Include the production router
+#TODO Add SoftDelete and Timestamp to these models
 app.include_router(ProductionRouter, tags=["Production"], prefix="/production")
+app.include_router(ProductionCategoryRouter, tags=["Production Category"],prefix="/ProductionCategory")
+
 
 @app.get("/", tags=["Root"])
 async def read_root():
