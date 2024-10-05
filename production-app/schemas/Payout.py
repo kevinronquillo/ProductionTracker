@@ -9,6 +9,6 @@ class PayoutSchema(BaseModel):
     listingsSold: int
 
 class UpdatePayoutSchema(BaseModel):
-    date: Optional[datetime]
-    sales: Optional[float]
-    listingsSold: Optional[int]
+    date: Optional[datetime] = None
+    sales: Optional[float] = None
+    listingsSold: Optional[int] = None

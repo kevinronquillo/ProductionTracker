@@ -17,9 +17,9 @@ class UserSchema(BaseModel):
     
 class UpdateUserSchema(BaseModel):
 
-    username: Optional[str]
-    firstName: Optional[str]
-    lastName: Optional[str]
-    password: Optional[str]
-    credits: Optional[int]
-    city: Optional[str]
+    username: Optional[str] = None
+    firstName: Optional[str] = None
+    lastName: Optional[str] = None
+    password: Optional[str] = None
+    credits: Optional[int] = None
+    city: Optional[str] = None

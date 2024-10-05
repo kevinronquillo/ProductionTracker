@@ -13,9 +13,8 @@ class ProductionSchema(BaseModel):
 
 # Schema for updating a production entry (fields optional)
 class UpdateProductionSchema(BaseModel):
-    date: Optional[datetime]
-    quantity: Optional[int]
-    hours: Optional[int]
-    production_list: Optional[str]
-    department_list: Optional[str]
-    comment: Optional[str]
+    date: Optional[datetime] = None
+    quantity: Optional[int] = None
+    hours: Optional[int] = None
+    production_list: Optional[str] = None
+    comment: Optional[str] = None
