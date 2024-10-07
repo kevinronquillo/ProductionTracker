@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
 from typing import List
-
-from models.User import User,ResponseModel, ErrorResponseModel
+from models.User import User,ResponseModel, ErrorResponseModel, UserInDB
 from schemas.User import UserSchema, UpdateUserSchema
+from middleware.security import get_password_hash
+from repositories.UserRepository import UserRepository
 
 router = APIRouter()
 
@@ -43,3 +44,24 @@ async def delete_user_data(id: str):
         await user.delete()
         return ResponseModel(data =f"User with ID: {id} removed", message="User deleted successfully")
     raise HTTPException(status_code=404, detail=f"User with ID {id} not found")
+
+@router.post("/register",response_description="User created succesfully")
+async def register_user(user: UserSchema):
+    existingUser = await UserRepository.get_user(user.username)
+    if existingUser:
+        HTTPException(status_code=400, detail="Username already exists")
+        
+    hashed_password = get_password_hash(user.password)
+    
+    new_user = UserInDB(
+        
+        username = user.username,
+        firstName= user.firstName,
+        lastName= user.lastName,
+        credits= user.credits,
+        hashed_password =hashed_password,
+        city= user.city,
+        disabled= False
+    )
+    await new_user.insert()
+    return{"msg": f"User for: {user.firstName} {user.lastName} created successfully"}

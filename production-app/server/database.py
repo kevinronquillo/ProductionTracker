@@ -5,9 +5,10 @@ from models.Production import Production
 from models.ProductionCategory import ProductionCategory
 from models.Payout import Payout
 from models.User import User
+import os
 # Database connection details
-MONGO_DETAILS = "mongodb://localhost:27017"
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
+
+client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_DETAILS"))
 database = client.production
 
 # Initialize Beanie

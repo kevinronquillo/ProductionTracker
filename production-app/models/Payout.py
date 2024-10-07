@@ -9,6 +9,7 @@ class Payout(Document):
     date: datetime
     sales: float
     listingsSold: int
+    location: str
 
 # Success response model
 class ResponseModel(BaseModel):
