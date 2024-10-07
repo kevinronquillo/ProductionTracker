@@ -10,3 +10,4 @@ venv
 /production-app/server/__pycache__
 /production-app/services/__pycache__
 .env
+.vscode
