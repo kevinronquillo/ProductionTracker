@@ -1,10 +1,9 @@
-from pydantic import Field
 from datetime import datetime
+from typing import Optional
 
-
-class SoftDeleteMixin:
-    deletedAt: str = Field(None)
-    isDeleted: bool = Field(None)
+class SoftDeleteMixin():
+    deletedAt: Optional[str] = None
+    isDeleted: bool = False
 
     def update_deleted_at(self):
-        self.deletedAt = datetime.isoformat()
+        self.deletedAt = datetime.now().isoformat()

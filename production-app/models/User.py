@@ -3,6 +3,9 @@ from typing import Optional, Any
 from datetime import datetime
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
+from classes.SoftDeleteMixin import SoftDeleteMixin
+from classes.TimestampMixin import TimestampMixin
+
 
 class User(Document):
 
@@ -24,6 +27,6 @@ class ErrorResponseModel(BaseModel):
     code: int
     message: str
 
-class UserInDB(User):
+class UserInDB(User,SoftDeleteMixin,TimestampMixin):
     hashed_password: str
     

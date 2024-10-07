@@ -17,7 +17,7 @@ async def add_user_data(user: UserSchema = Body(...)):
 
 @router.get("/", response_description="Useres retrieved successfully")
 async def get_user():
-    users = await User.find_all().to_list()
+    users = await UserInDB.find_all().to_list()
     user_data = [user.dict() for user in users]
     return ResponseModel(data =user_data , message= "Users retrieved Successfully")
 

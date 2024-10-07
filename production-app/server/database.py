@@ -5,9 +5,10 @@ from models.Production import Production
 from models.ProductionCategory import ProductionCategory
 from models.Payout import Payout
 from models.User import User
+from dotenv import load_dotenv
 import os
 # Database connection details
-
+load_dotenv()
 client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_DETAILS"))
 database = client.production
 
