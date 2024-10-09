@@ -8,6 +8,7 @@ class PayoutSchema(BaseModel):
     sales: float
     listingsSold: int
     location: str
+    account: str
 
 class UpdatePayoutSchema(BaseModel):
     date: Optional[datetime] = None

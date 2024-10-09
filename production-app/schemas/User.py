@@ -11,6 +11,7 @@ class UserSchema(BaseModel):
     lastName: Optional[str] = None
     credits: Optional[int] = None
     city: Optional[str] = None
+    role: Optional[str] = None
     password:str
     
 class UpdateUserSchema(BaseModel):
@@ -20,6 +21,8 @@ class UpdateUserSchema(BaseModel):
     lastName: Optional[str] = None
     credits: Optional[int] = None
     city: Optional[str] = None
+    role: Optional[str] = None
+    
     
 class UserInDBSchema(UserSchema):
     hashed_password: str

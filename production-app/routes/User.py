@@ -61,6 +61,7 @@ async def register_user(user: UserSchema):
         credits= user.credits,
         hashed_password =hashed_password,
         city= user.city,
+        role = user.role,
         disabled= False
     )
     await new_user.insert()

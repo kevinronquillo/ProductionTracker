@@ -10,6 +10,7 @@ class Payout(Document):
     sales: float
     listingsSold: int
     location: str
+    account: str
 
 # Success response model
 class ResponseModel(BaseModel):

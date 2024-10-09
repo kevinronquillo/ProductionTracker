@@ -7,22 +7,10 @@ from models.User import User
 from repositories.UserRepository import UserRepository
 from classes.Settings import Settings
 from typing import Optional
-from pydantic_settings import BaseSettings
-from pydantic import BaseModel
+from models.Token import Token, TokenDataSchema,TokenSchema
 
 settings = Settings()
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-class Token(BaseSettings):
-    access_token: str
-    token_type: str
-
-class TokenSchema(BaseModel):
-    access_token: str
-    token_type: str
-
-class TokenDataSchema(BaseModel):
-    username: Optional[str] = None
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta]= None) -> str:
     to_encode = data.copy()
@@ -38,7 +26,7 @@ async def get_current_user(token: str =  Depends(oauth_scheme)) -> User:
     )
     try:
         payload = decode(token,settings.SECRET_KEY,algorithms=[settings.ALGORITHM])
-        username: str = payload.get("sub")
+        username: Optional[str] = payload.get("sub")
         if username is None:
             raise credentials_exception
         user = await UserRepository.get_user(username)

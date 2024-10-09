@@ -14,6 +14,7 @@ class User(Document):
     lastName: Optional[str] = None
     credits: Optional[int] = None
     city: Optional[str] = None
+    role: Optional[str] = None
     disabled: Optional[bool] = None
 
 # Success response model
