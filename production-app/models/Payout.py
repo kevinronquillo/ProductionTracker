@@ -1,12 +1,12 @@
 # models/Production.py
 from beanie import Document
 from typing import Optional, Any
-from datetime import datetime
+from datetime import date
 from pydantic import BaseModel
 
 
 class Payout(Document):
-    date: datetime
+    date: date
     sales: float
     listingsSold: int
     location: str

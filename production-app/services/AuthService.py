@@ -21,7 +21,7 @@ class AuthService:
         if not user: 
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"})
         access_token = create_access_token(data= {
-            "sub": user.username}, 
+            "sub": user.username,"id": str(user.id)}, 
             expires_delta=timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES))
         return Token(access_token=access_token, token_type="bearer")
 

@@ -2,9 +2,10 @@
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
 from typing import List
-
+from schemas.User import UserSchema
 from models.Production import Production, ResponseModel, ErrorResponseModel
 from schemas.Production import ProductionSchema, UpdateProductionSchema
+from repositories.UserRepository import UserRepository
 
 router = APIRouter()
 
@@ -51,3 +52,13 @@ async def delete_production_data(id: str):
         await production.delete()
         return ResponseModel(data = f"Production with ID: {id} removed", message = "Production deleted successfully")
     raise HTTPException(status_code=404, detail=f"Production with ID {id} not found.")
+# Get all the productions from one employee
+@router.get("/employee/{employeeId}", response_description="Production data retrieved")
+async def get_productions_by_employee(employeeId: str):
+    # Use .find with a filter and to_list to convert to a list of documents
+    productions = await Production.find({"employeeId": employeeId}).to_list(length=None)  # None retrieves all documents
+
+    if productions:
+        return ResponseModel(data=[production.dict() for production in productions], message="Production data retrieved successfully")
+    
+    raise HTTPException(status_code=404, detail=f"No productions found for employee ID {employeeId}")

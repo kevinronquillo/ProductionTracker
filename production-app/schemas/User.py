@@ -5,7 +5,8 @@ from datetime import datetime
 
 
 class UserSchema(BaseModel):
-
+    
+    id: str
     username: str
     firstName: Optional[str] = None
     lastName: Optional[str] = None
@@ -13,6 +14,7 @@ class UserSchema(BaseModel):
     city: Optional[str] = None
     role: Optional[str] = None
     password:str
+    
     
 class UpdateUserSchema(BaseModel):
 
